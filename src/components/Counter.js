@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { useSelector, useDispatch, connect } from 'react-redux';
 import classes from './Counter.module.css';
+import { counterActions } from '../store/index.js';
 
 // const Counter = () => {
 // const dispatch = useDispatch();
@@ -42,7 +43,7 @@ class Counter extends Component {
   };
 
   incrementBy5Handler() {
-    this.props.incrementby5();
+    this.props.incrementBy5();
   }
 
   decrementHandler() {
@@ -79,10 +80,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    increment: () => dispatch({ type: 'INCREMENT' }),
-    incrementby5: () => dispatch({ type: 'INCREMENT_BY_5' }),
-    decrement: () => dispatch({ type: 'DECREMENT' }),
-    toggle: () => dispatch({ type: 'TOGGLE' })
+    increment: () => dispatch(counterActions.increment()),
+    incrementBy5: () => dispatch(counterActions.incrementBy5()),
+    decrement: () => dispatch(counterActions.decrement()),
+    toggle: () => dispatch(counterActions.toggle()),
   };
 };
 
