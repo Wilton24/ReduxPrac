@@ -33,9 +33,16 @@ import classes from './Counter.module.css';
 // };
 
 class Counter extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   incrementHandler() {
     this.props.increment();
+  };
+
+  incrementBy5Handler() {
+    this.props.incrementby5();
   }
 
   decrementHandler() {
@@ -45,13 +52,15 @@ class Counter extends Component {
   toggleCounterHandler() {
     this.props.toggle();
   }
+
   render() {
     return (
       <main className={classes.counter}>
         <h1>Redux Counter</h1>
-        <div className={classes.value}>{this.props.counter}</div>
+        {this.props.showCounter && <div className={classes.value}>{this.props.counter}</div>}
         <div>
           <button onClick={this.incrementHandler.bind(this)}>Increment</button>
+          <button onClick={this.incrementBy5Handler.bind(this)}>Increase by 5</button>
           <button onClick={this.decrementHandler.bind(this)}>Decrement</button>
         </div>
         <button onClick={this.toggleCounterHandler.bind(this)}>Toggle Counter</button>
@@ -63,13 +72,15 @@ class Counter extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    counter: state.count
+    counter: state.count,
+    showCounter: state.showCounter
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     increment: () => dispatch({ type: 'INCREMENT' }),
+    incrementby5: () => dispatch({ type: 'INCREMENT_BY_5' }),
     decrement: () => dispatch({ type: 'DECREMENT' }),
     toggle: () => dispatch({ type: 'TOGGLE' })
   };
