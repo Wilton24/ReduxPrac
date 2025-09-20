@@ -1,7 +1,4 @@
-import { createStore } from "redux";
-
-
-
+import { legacy_createStore as createStore } from "redux";
 
 const counterReducer = (state = { count: 0 }, action) => {
     switch (action.type) {
@@ -12,10 +9,8 @@ const counterReducer = (state = { count: 0 }, action) => {
         default:
             return state;
     }
-
-}
-
+};
 
 const store = createStore(counterReducer);
 
-export default store; 
+export default store;
